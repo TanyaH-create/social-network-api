@@ -12,12 +12,12 @@ import { Request, Response } from 'express';
     }
   }
 
-  // Get a single user
+  //Get a single user
   export const getSingleUser = async (req: Request, res: Response) => {
     try {
       const user = await User.findOne({ _id: req.params.userId })
-        .select('-__v');
-
+         .populate( {path: 'thoughts friends', select:'-__v' })
+         .populate( {path: 'friends', select:'-__v' });
       if (!user) {
         return res.status(404).json({ message: 'No user with that ID' });
       }
@@ -29,6 +29,9 @@ import { Request, Response } from 'express';
       return;
     }
   }
+
+
+
 
   // create a new user
   export const createUser = async (req: Request, res: Response) => {
@@ -58,7 +61,7 @@ import { Request, Response } from 'express';
     }
   }
 
-// Add a friend to a user's friend list - the friend is a user
+// Add friend - allow a user to add another user as a friend
 export const addFriend = async (req: Request, res: Response) => {
   try {
     const user = await User.findOneAndUpdate(
