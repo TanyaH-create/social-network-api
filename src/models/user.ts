@@ -50,6 +50,6 @@ userSchema.virtual('friendCount')
 
 
 // Initialize our User model
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 export default User;
