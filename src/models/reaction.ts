@@ -24,9 +24,19 @@ const reactionSchema = new Schema<IReaction>(
          required: true
     },
     createdAt: {
-          type: Date,
-          default: Date.now,
-          get: (createdAtVal: Date) => createdAtVal.toLocaleString()
+        type: Date,
+        default: Date.now,
+        get: (timestamp: Date): any => {
+            if (!timestamp) return null;
+            return new Date(timestamp).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit'
+            });
+        }
     },
  
   },

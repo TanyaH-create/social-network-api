@@ -1,5 +1,5 @@
 //user.ts
-import { Schema, model, Document, ObjectId } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
 interface IUser extends Document {
   username: string;

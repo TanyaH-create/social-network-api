@@ -1,6 +1,6 @@
 //thought.ts
 
-import { Schema, model, Document, Types } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 import ReactionSchema from './reaction'; // Import the Reaction schema
 
 interface IThought extends Document {
