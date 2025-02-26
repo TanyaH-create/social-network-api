@@ -40,7 +40,7 @@ import { Request, Response } from 'express';
     }
   }
 
-  // Delete a user and associated apps
+  // Delete a user and associated thoughts
   export const deleteUser = async (req: Request, res: Response) => {
     try {
       const user = await User.findOneAndDelete({ _id: req.params.userId });
@@ -58,3 +58,40 @@ import { Request, Response } from 'express';
     }
   }
 
+// Add a friend to a user's friend list - the friend is a user
+export const addFriend = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true, runValidators: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this ID' });
+    }
+
+    return res.json(user);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+// Remove a friend from a user's friend list
+export const removeFriend = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this ID' });
+    }
+
+    return res.json(user);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
