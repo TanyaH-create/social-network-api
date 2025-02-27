@@ -45,7 +45,7 @@ const thoughtSchema = new Schema<IThought>(
       virtuals: true,
       getters: true,
     },
-    id: false, //do not add an id field
+    
   }
 );
 thoughtSchema.virtual('reactionCount')

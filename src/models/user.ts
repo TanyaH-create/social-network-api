@@ -40,7 +40,7 @@ const userSchema = new Schema<IUser>(
     toJSON: {
       virtuals: true,
     },
-    id: false, //do not add an id field
+    
   }
 );
 userSchema.virtual('friendCount')
