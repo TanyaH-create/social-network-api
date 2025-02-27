@@ -4,8 +4,8 @@ Social Network API is an application built using MongoDB, Express.js, and Mongoo
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#Usage)
-- [Walkthrough Video}(#walkthorugh-video)
+- [Usage](#usage)
+- [Walkthrough Video](#walkthrough-video)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 
