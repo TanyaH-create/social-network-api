@@ -44,7 +44,7 @@ const reactionSchema = new Schema<IReaction>(
     toJSON: {
       getters: true,
     },
-    id: false, //do not add an id field
+    _id: false, //do not add an id field
   }
 );
 

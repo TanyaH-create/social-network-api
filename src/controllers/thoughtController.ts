@@ -34,7 +34,7 @@ import { Request, Response } from 'express';
       const thought = await Thought.create(req.body);
       const user = await User.findOneAndUpdate(
         { _id: req.body.userId },
-        { $addToSet: { thoughts: thought._id } },
+        { $push: { thoughts: thought._id } },
         { new: true }
       );
 
@@ -99,6 +99,54 @@ import { Request, Response } from 'express';
 
       res.json({ message: 'Thought successfully deleted!' });
       return;
+    } catch (err) {
+      res.status(500).json(err);
+      return;
+    }
+  }
+
+  // Add reaction t a thouht
+export const addReaction = async (req: Request, res: Response) => {
+  try {
+    const thought = await Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $push: { 
+        reactions:
+         {
+             reactionBody: req.body.reactionBody,
+             username: req.body.username
+         }
+       } 
+      },
+      { new: true, runValidators: true }
+    );
+
+
+    if (!thought) {
+      return res.status(404).json({ message: 'No thought with this ID' });
+    }
+
+    return res.json(thought);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+
+  // Delete a user and associated thoughts
+  export const deleteReaction = async (req: Request, res: Response) => {
+    try {
+      const thought = await Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $pull: { reactions: { reactionId: req.params.reactionId  } } },
+          { new: true }
+        );
+
+      if (!thought) {
+        return res.status(404).json({ message: 'No reaction with that ID' });
+      }
+      //return res.json({ message: 'Reaction deleted!' })
+      return res.json(thought);
     } catch (err) {
       res.status(500).json(err);
       return;
