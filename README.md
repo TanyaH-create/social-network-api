@@ -10,6 +10,7 @@ Social Network API is an application built using MongoDB, Express.js, and Mongoo
 - [Walkthrough Video](#walkthrough-video)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
+- [License](#license)
 
 
 ## Features
@@ -112,7 +113,9 @@ Contributions are welcome! Please follow these steps:
 
   
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT license. A complete version of the MIT license is available at [MIT](https://opensource.org/licenses/MIT).
+Any contribution made to this project will be icense under the MIT.
+ 
 
 
 
