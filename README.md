@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)] 
+
 
 Social Network API is an application built using MongoDB, Express.js, and Mongoose ODM. The API allows users to share their thoughts, react to friends' thoughts, and manage a friend list. It is designed to handle large amounts of unstructured data efficiently.
 
